@@ -1,1 +1,8 @@
 /home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/loja/loja/LojaApplication.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/loja/loja/controller/CategoriaController.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/loja/loja/dto/CategoriaRequest.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/loja/loja/dto/CategoriaResponse.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/loja/loja/entity/CategoriaEntity.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/loja/loja/repository/CategoriaRepository.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/loja/loja/service/CategoriaService.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/loja/loja/service/impl/CategoriaServiceImpl.java
