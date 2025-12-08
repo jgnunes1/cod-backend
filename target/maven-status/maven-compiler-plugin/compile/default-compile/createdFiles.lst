@@ -7,5 +7,4 @@ br/loja/loja/dto/CategoriaResponse.class
 br/loja/loja/entity/CategoriaEntity$CategoriaEntityBuilder.class
 br/loja/loja/repository/CategoriaRepository.class
 br/loja/loja/service/CategoriaService.class
-br/loja/loja/service/impl/CategoriaServiceImpl.class
 br/loja/loja/entity/CategoriaEntity.class

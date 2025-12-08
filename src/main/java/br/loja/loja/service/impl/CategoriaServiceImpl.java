@@ -1,6 +1,9 @@
 package br.loja.loja.service.impl;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import br.loja.loja.dto.CategoriaResponse;
 import br.loja.loja.entity.CategoriaEntity;
@@ -27,6 +30,14 @@ public class CategoriaServiceImpl implements CategoriaService {
         return convertToResponse(savedEntity);
     }
 
+    @Override
+    public List<CategoriaResponse> read() {
+        return categoriaRepository.findAll()
+                .stream()
+                .map(this::convertToResponse)
+                .toList();
+    }
+
     private CategoriaEntity convertToEntity(CategoriaRequest request) {
         return CategoriaEntity.builder()
                 .nome(request.getNome())
@@ -34,6 +45,17 @@ public class CategoriaServiceImpl implements CategoriaService {
                 .bgColor(request.getBgColor())
                 .imgUrl(request.getImgUrl())
                 .build();
+    }
+
+    @Override
+    public void delete (String categoriaId) {
+        // Busca todas as categorias e filtra por categoriaId
+        CategoriaEntity existenteCategoria = categoriaRepository.findAll()
+            .stream()
+            .filter(cat -> cat.getCategoriaId().equals(categoriaId))
+            .findFirst()
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada: " + categoriaId));
+        categoriaRepository.delete(existenteCategoria);
     }
 
     private CategoriaResponse convertToResponse(CategoriaEntity entity) {
