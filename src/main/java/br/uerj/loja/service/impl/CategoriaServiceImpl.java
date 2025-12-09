@@ -3,6 +3,7 @@ package br.uerj.loja.service.impl;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import br.uerj.loja.dto.CategoriaRequest;
 import br.uerj.loja.dto.CategoriaResponse;
@@ -10,12 +11,10 @@ import br.uerj.loja.entity.CategoriaEntity;
 import br.uerj.loja.repository.CategoriaRepository;
 import br.uerj.loja.service.CategoriaService;
 
-import org.springframework.http.HttpStatus;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor // injeta dependências via construtor
+@RequiredArgsConstructor
 public class CategoriaServiceImpl implements CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
@@ -38,6 +37,27 @@ public class CategoriaServiceImpl implements CategoriaService {
                 .stream()
                 .map(this::convertToResponse)
                 .toList();
+    }
+
+    @Override
+    public CategoriaResponse atualizarCategoria(String categoriaId, CategoriaRequest request) {
+        // Busca a categoria por categoriaId
+        CategoriaEntity existenteCategoria = categoriaRepository.findAll()
+            .stream()
+            .filter(cat -> cat.getCategoriaId() != null && cat.getCategoriaId().equals(categoriaId))
+            .findFirst()
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada: " + categoriaId));
+        
+        // Atualiza os campos
+        existenteCategoria.setNome(request.getNome());
+        existenteCategoria.setDescricao(request.getDescricao());
+        existenteCategoria.setBgColor(request.getBgColor());
+        existenteCategoria.setImgUrl(request.getImgUrl());
+        
+        // Salva as alterações
+        CategoriaEntity updatedEntity = categoriaRepository.save(existenteCategoria);
+        
+        return convertToResponse(updatedEntity);
     }
 
     private CategoriaEntity convertToEntity(CategoriaRequest request) {

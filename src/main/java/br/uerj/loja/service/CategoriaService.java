@@ -7,10 +7,11 @@ import br.uerj.loja.dto.CategoriaResponse;
 
 public interface CategoriaService {
 
-        CategoriaResponse criarCategoria(CategoriaRequest request);
+    CategoriaResponse criarCategoria(CategoriaRequest request);
 
-                List<CategoriaResponse> read();
+    List<CategoriaResponse> read();
 
-                void delete(String categoriaId);
-    
+    CategoriaResponse atualizarCategoria(String categoriaId, CategoriaRequest request);
+
+    void delete(String categoriaId);
 }

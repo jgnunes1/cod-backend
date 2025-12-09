@@ -1,0 +1,13 @@
+br/uerj/loja/service/FileUploadService.class
+br/uerj/loja/service/impl/FileUploadServiceImpl.class
+br/uerj/loja/entity/CategoriaEntity$CategoriaEntityBuilder.class
+br/uerj/loja/dto/CategoriaResponse$CategoriaResponseBuilder.class
+br/uerj/loja/service/CategoriaService.class
+br/uerj/loja/service/impl/CategoriaServiceImpl.class
+br/uerj/loja/repository/CategoriaRepository.class
+br/uerj/loja/dto/CategoriaRequest.class
+br/uerj/loja/config/AWSconfig.class
+br/uerj/loja/LojaApplication.class
+br/uerj/loja/dto/CategoriaResponse.class
+br/uerj/loja/entity/CategoriaEntity.class
+br/uerj/loja/controller/CategoriaController.class

@@ -6,4 +6,6 @@
 /home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/uerj/loja/entity/CategoriaEntity.java
 /home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/uerj/loja/repository/CategoriaRepository.java
 /home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/uerj/loja/service/CategoriaService.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/uerj/loja/service/FileUploadService.java
 /home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/uerj/loja/service/impl/CategoriaServiceImpl.java
+/home/jgnunes/Projetos/curso/cod-backend/src/main/java/br/uerj/loja/service/impl/FileUploadServiceImpl.java
