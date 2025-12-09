@@ -3,23 +3,32 @@ package br.uerj.loja.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.regions.Region;
+
 import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
 public class AWSconfig {
+
     @Value("${aws.accessKey}")
     private String accessKey;
+
     @Value("${aws.secretKey}")
     private String secretKey;
 
+    @Value("${aws.region}")
+    private String region;
 
     @Bean
-    public S3Client S3Client() {
-        AwsBasicCredentials awsCreds = AwsBasicCredentials.create(accessKey, secretKey);
+    public S3Client s3Client() {
         return S3Client.builder()
-                .credentialsProvider(StaticCredentialsProvider.create(awsCreds))
-                .region(Region.US_EAST_1)
+                .region(Region.of(region))
+                .credentialsProvider(
+                        StaticCredentialsProvider.create(
+                                AwsBasicCredentials.create(accessKey, secretKey)))
                 .build();
     }
-    
 }
