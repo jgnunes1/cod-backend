@@ -10,6 +10,8 @@ import br.uerj.loja.dto.CategoriaResponse;
 import br.uerj.loja.entity.CategoriaEntity;
 import br.uerj.loja.repository.CategoriaRepository;
 import br.uerj.loja.service.CategoriaService;
+import br.uerj.loja.service.FileUploadService;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class CategoriaServiceImpl implements CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
+    private final FileUploadService fileUploadService;
 
     @Override
     public CategoriaResponse criarCategoria(CategoriaRequest request) {
@@ -29,6 +32,16 @@ public class CategoriaServiceImpl implements CategoriaService {
         
         // Converte a entidade salva para DTO de resposta
         return convertToResponse(savedEntity);
+    }
+
+    @Override
+    public CategoriaResponse criarCategoria(CategoriaRequest request, MultipartFile file) {
+        // Faz upload do arquivo e atribui URL ao request
+        String fileUrl = fileUploadService.uploadFile(file);
+        CategoriaEntity entity = convertToEntity(request);
+        entity.setImgUrl(fileUrl);
+        CategoriaEntity saved = categoriaRepository.save(entity);
+        return convertToResponse(saved);
     }
 
     @Override
